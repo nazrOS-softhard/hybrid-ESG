@@ -180,7 +180,6 @@ export default function Home() {
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid #1a1a1a', background: 'rgba(8,8,8,0.88)', backdropFilter: 'blur(16px)' }}>
         <div style={{ ...C, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {/* ← НАСТОЯЩИЙ ЛОГОТИП */}
             <Image src={hybridLogo} alt="Hybrid" style={{ width: 30, height: 30 }} />
             <div style={{ lineHeight: 1.2 }}>
               <div style={{ color: '#505050', fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const }}>{T.corp}</div>
@@ -188,12 +187,21 @@ export default function Home() {
             </div>
           </div>
           <div style={{ display: 'flex', gap: 36 }}>
-            {T.nav.map((label, i) => (
-              <a key={i} href={['#products','#divisions','#mission','#vputi'][i]}
-                style={{ color: '#606060', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase' as const, textDecoration: 'none' }}>
-                {label}
-              </a>
-            ))}
+            {T.nav.map((label, i) => {
+              // Жестко задаем ссылки для каждой кнопки
+              const hrefs = [
+                '#products', 
+                '#divisions', 
+                'https://ecosystem-eg2ww.vercel.app/', // <-- СЮДА ВЕДЕТ КНОПКА "МИССИИ"
+                '#vputi'
+              ];
+              return (
+                <a key={i} href={hrefs[i]}
+                  style={{ color: '#606060', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase' as const, textDecoration: 'none' }}>
+                  {label}
+                </a>
+              );
+            })}
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ display: 'flex', gap: 2, background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: 8, padding: 3 }}>
@@ -248,7 +256,6 @@ export default function Home() {
                   <span style={{ color: '#404040', fontSize: 10, border: '1px solid #1a1a1a', padding: '2px 8px', borderRadius: 20, textTransform: 'uppercase' as const, letterSpacing: '0.08em' }}>{tag}</span>
                 </div>
                 
-                {/* ← ИЗОБРАЖЕНИЕ ПРОДУКТА */}
                 <div style={{ width: '100%', height: 110, background: '#0a0a0a', border: '1px solid #141414', borderRadius: 6, marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
            {index === 0 ? (
   <Image 
@@ -351,7 +358,6 @@ export default function Home() {
       <footer style={{ borderTop: '1px solid #1a1a1a', padding: '40px 0', position: 'relative', zIndex: 1 }}>
         <div style={{ ...C, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' as const, gap: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {/* ← ЛОГОТИП В ФУТЕРЕ ТОЖЕ */}
             <Image src={hybridLogo} alt="Hybrid" style={{ width: 20, height: 20 }} />
             <div>
               <div style={{ color: '#303030', fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase' as const }}>{T.corp}</div>
